@@ -19,7 +19,9 @@
 			//indents: "tabs" or "space"  
 			indent: 'tabs',
 			//ordered or unordered list
-			list: 'ol'
+			list: 'ol',
+			//name of the tag attribute to add a special language highlighting
+			attribute: 'lang'
 		}
 		
 		var params = $.extend({}, defaults, element_params);
@@ -27,7 +29,7 @@
 		return this.each(function(){
 			var code_container = $(this);
 			var code_class = $(code_container).attr('class');
-			var code_lang = $(code_container).attr('lang');
+			var code_lang = $(code_container).attr(params.attribute);
 			var code_lang_class = '';
 			if(code_lang!='') {
 				code_lang_class = ' '+code_lang;
