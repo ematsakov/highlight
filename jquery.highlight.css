@@ -134,3 +134,10 @@ pre.code .fnc span {
 	font-style: italic;
 	font-weight: normal; 
 }
+
+/* sql */
+pre.code .op,
+pre.code .op span {
+	color: #008;
+	font-weight: bold;
+}
