@@ -57,7 +57,10 @@
 					break;
 				case 'php':
 					code = $.highlightCode.hightlight_php(code);	
-				  break;
+					break;
+				case 'sql':
+					code = $.highlightCode.hightlight_sql(code);	
+					break;
 				default:
 					code = $.highlightCode.hightlight(code);	
 					break;
@@ -173,7 +176,7 @@
 				'new old_function return static switch use require require_once ' +
 				'while abstract interface public implements extends private protected throw';
 	
-	    funcs = new RegExp(get_keywords(funcs), 'gi');
+			funcs = new RegExp(get_keywords(funcs), 'gi');
 			keywords = new RegExp(get_keywords(keywords), 'gi');
 			
 			code = code
@@ -266,7 +269,8 @@
 				.replace(/(&lt;|<)!--([\s\S]*?)--(&gt;|>)/gm,'<span class="com">$1!--$2--$3</span>');
 				
 			return code;
-		};
+		},
+		
 		//SQL
 		hightlight_sql: function(code) {
 			var comments		= [];	// store comments
@@ -294,8 +298,8 @@
 						'varchar varying view when where with work';
 			
 			var op =	'all and any between cross in join like not null or outer some';
-	    	
-	    	funcs = new RegExp(get_keywords(funcs), 'gi');
+
+			funcs = new RegExp(get_keywords(funcs), 'gi');
 			keywords = new RegExp(get_keywords(keywords), 'gi');
 			op = new RegExp(get_keywords(op), 'gi');
 

@@ -257,7 +257,7 @@ $(document).ready(function(){
 	$('input[type="text"],input[type="password"]').focus(function(){
 		$(this).parent().parent().addClass('focus');
 	});
-  $('input[type="text"],input[type="password"]').blur(function(){
+	$('input[type="text"],input[type="password"]').blur(function(){
 		$(this).parent().parent().removeClass('focus');
 	});
 	
@@ -266,7 +266,7 @@ $(document).ready(function(){
 
 //scaling font size
 function initFontSize() {
-  ratio = $(window).width() / 1200 * 16;
+	ratio = $(window).width() / 1200 * 16;
 	ratio = Math.floor(ratio * 100) / 100;	
 	if (ratio < 11) ratio = 11;
 	if (ratio > 14) ratio = 14;	
@@ -278,6 +278,20 @@ $(window).resize(function() {
 });
 $(window).trigger('resize'); 	
 </pre>
+
+<h2>SQL code</h2>
+<pre class="code" data-language="sql">
+SELECT * FROM stats;
+
+INSERT INTO station VALUES (13, 'Phoenix', 'AZ', 33, 112);
+
+DELETE FROM station WHERE long_w < 90; 
+
+SELECT MAX(temp_f), MIN(temp_f), AVG(rain_i), id
+	FROM stats
+GROUP BY id;
+</pre>
+
 <br />
 
 </body>
