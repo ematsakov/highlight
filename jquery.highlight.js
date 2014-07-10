@@ -2,7 +2,7 @@
  * jQuery Highlight Plugin
  * Examples and documentation at: http://demo.webcodingstudio.com/highlight/
  * Copyright (c) 2010 E. Matsakov
- * Version: 1.0 (26-FEB-2010)
+ * Version: 1.01 (10-JUL-2014)
  * Dual licensed under the MIT and GPL licenses:
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
@@ -209,6 +209,7 @@
 				'border-right border-bottom border-left border-top-color border-right-color border-bottom-color border-left-color ' +
 				'border-top-style border-right-style border-bottom-style border-left-style border-top-width border-right-width ' +
 				'border-bottom-width border-left-width border-width border color cursor direction display ' +
+				'flex-direction flex-flow flex-wrap ' +
 				'float font-size-adjust font-family font-size font-stretch font-style font-variant font-weight font ' +
 				'height left letter-spacing line-height list-style-image list-style-position list-style-type list-style margin-top ' +
 				'margin-right margin-bottom margin-left margin max-height max-width min-height min-width ' +
