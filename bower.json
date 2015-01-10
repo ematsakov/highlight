@@ -1,0 +1,8 @@
+{
+  "name": "jquery.highlight",
+  "version": "1.2.0",
+  "homepage": "https://github.com/ematsakov/highlight",
+  "description": "syntax highlighting of source code snippets in an html page (jQuery plugin)",
+  "main": "jquery.highlight.js",
+  "license": "MIT"
+}
