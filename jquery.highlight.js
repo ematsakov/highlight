@@ -168,15 +168,16 @@
 				'stripos stripslashes stristr strlen strnatcasecmp strnatcmp strncasecmp strncmp strpbrk '+
 				'strpos strptime strrchr strrev strripos strrpos strspn strstr strtok strtolower strtotime '+
 				'strtoupper strtr strval substr substr_compare';
+// var is not allowed as a keyword, as its a cSS classname :-)
 	
 			var keywords =	'and or xor array as break case ' +
 				'cfunction const continue declare default die do else ' +
 				'elseif enddeclare endfor endforeach endif endswitch endwhile ' + 
 				'for foreach function include include_once global if ' +
 				'new old_function return static switch use require require_once ' +
-				'while abstract interface public implements extends private protected throw  __LINE__ __FILE__ __FUNCTION__ '+
-				'__METHOD__ __CLASS__ __DIR__ __NAMESPACE__  namespace instanceof parent self real bool double float string '+
-				'object null const var clone new true false';
+				'while abstract interface public implements extends private protected throw __LINE__ __FILE__ __FUNCTION__ '+
+				'__METHOD__ __CLASS__ __DIR__ __NAMESPACE__ namespace instanceof parent self real bool double float string '+
+				'object null const clone new true false';
 	
 			funcs = new RegExp(get_keywords(funcs), 'gi');
 			keywords = new RegExp(get_keywords(keywords), 'gi');
@@ -192,13 +193,15 @@
 					{ return comments[i]; })
 				//replace one line comments
 				.replace(/\/\/(.*$)/gm,'<span class="com">//$1</span>')
-				.replace(/\<#(.*$)/gm,'<span class="com">#$1</span>')
+				.replace(/#(.*$)/gm,'<span class="com">#$1</span>')
 				//replace variables
 				.replace(/\$(\w+)/g,'<span class="var">$$$1</span>')
 				//replace functions
 				.replace(funcs,'<span class="fnc">$1</span>$2')
 				//replace keywords
-				.replace(keywords,'<span class="kwd">$1</span>$2');
+				.replace(keywords,'<span class="kwd">$1</span>$2')
+// var  is injected seperately here..
+				.replace(/var\([^"]\)/gm,'<span class="kwd">var</span>$1');
 			return code;
 		},
 		
