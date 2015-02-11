@@ -190,6 +190,7 @@
 					{ return comments[i]; })
 				//replace one line comments
 				.replace(/\/\/(.*$)/gm,'<span class="com">//$1</span>')
+				.replace(/\#(.*$)/gm,'<span class="com">#$1</span>')
 				//replace variables
 				.replace(/\$(\w+)/g,'<span class="var">$$$1</span>')
 				//replace functions
