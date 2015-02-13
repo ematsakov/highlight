@@ -186,6 +186,9 @@
 				//replace strings
 				.replace(/(".*?")/g,'<span class="str">$1</span>')
 				.replace(/('.*?')/g,'<span class="str">$1</span>')	
+				.replace(/([0-9.\-]+)/g,'<span class="str">$1</span>')	
+				// float notation numbers
+				.replace(/(-?[0-9.]+[eE]-?[0-9.])/g,'<span class="str">$1</span>')	
 				//replace multiline comments
 				.replace(/\/\*([\s\S]*?)\*\//g, function(m, t)
 					{ return '\0C'+push(comments, multiline_comments(m))+'\0'; })
@@ -193,7 +196,7 @@
 					{ return comments[i]; })
 				//replace one line comments
 				.replace(/\/\/(.*$)/gm,'<span class="com">//$1</span>')
-				.replace(/#(.*$)/gm,'<span class="com">#$1</span>')
+				.replace(/#(.+$)/gm,'<span class="com">#$1</span>')
 				//replace variables
 				.replace(/\$(\w+)/g,'<span class="var">$$$1</span>')
 				//replace functions
@@ -201,7 +204,8 @@
 				//replace keywords
 				.replace(keywords,'<span class="kwd">$1</span>$2')
 // var  is injected seperately here..
-				.replace(/var\([^"]\)/gm,'<span class="kwd">var</span>$1');
+				.replace(/\\bvar\\b([^"])/g,'<span class="kwd">var</span>$1')
+				.replace(/\\bclass\\b([^=])/g,'<span class="kwd">class</span>$1');
 			return code;
 		},
 		
@@ -340,7 +344,7 @@
 	//prepare regexp template for keywords
 	function get_keywords(str)
 	{
-		return '(' + str.replace(/ /g, '|') + ')([^a-z0-9\$_])';
+		return '(\\b' + str.replace(/ /g, '\\b|\\b') + '\\b)([^a-z0-9\$_])';
 	}
 	
 	//process multiline comments
