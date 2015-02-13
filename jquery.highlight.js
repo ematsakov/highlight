@@ -186,9 +186,9 @@
 				//replace strings
 				.replace(/(".*?")/g,'<span class="str">$1</span>')
 				.replace(/('.*?')/g,'<span class="str">$1</span>')	
-				.replace(/([0-9.\-]+)/g,'<span class="str">$1</span>')	
+				.replace(/\b([0-9.\-]+)\b/g,'<span class="str">$1</span>')	
 				// float notation numbers
-				.replace(/(-?[0-9.]+[eE]-?[0-9.])/g,'<span class="str">$1</span>')	
+				.replace(/\b(-?[0-9.]+[eE]-?[0-9.])\b/g,'<span class="str">$1</span>')	
 				//replace multiline comments
 				.replace(/\/\*([\s\S]*?)\*\//g, function(m, t)
 					{ return '\0C'+push(comments, multiline_comments(m))+'\0'; })
