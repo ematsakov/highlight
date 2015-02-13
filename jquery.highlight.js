@@ -2,7 +2,7 @@
  * jQuery Highlight Plugin
  * Examples and documentation at: http://demo.webcodingstudio.com/highlight/
  * Copyright (c) 2010 E. Matsakov
- * Version: 1.03 (11-Feb-2015)
+ * Version: 1.04 (12-Feb-2015)
  * Dual licensed under the MIT and GPL licenses:
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
