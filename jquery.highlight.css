@@ -72,15 +72,19 @@ div.highlight pre.source {
 
 /* highligting */
 pre.code .str { 
-	color: #080; 
+	color: #0d0; 
 }
+pre.code .var { 
+	color: #d00; 
+}
+
 pre.code .kwd,
 pre.code .kwd span { 
 	color: #070;
 }
 pre.code .com,
 pre.code .com span { 
-	color:#080;
+	color:#008;
 	font-style: italic;
 	font-weight: normal; 
 }
@@ -122,15 +126,15 @@ pre.code .fnc span {
 /* php */
 .php pre.code .str,
 .php pre.code .str span { 
-	color: #d00; 
+	color: #0d0; 
 }
 .php pre.code .var,
 .php pre.code .var span { 
-	color: #00b; 
-}
+	color: #b00; 
+};
 .php pre.code .com,
 .php pre.code .com span { 
-	color:#ff8000;
+	color:#008;
 	font-style: italic;
 	font-weight: normal; 
 }
