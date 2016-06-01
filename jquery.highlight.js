@@ -46,8 +46,6 @@
 			}
 			
 			var code = source;
-			
-			//hightlight
 			switch(code_lang) {
 				case 'html':
 					code = $.highlightCode.hightlight_html(code);	
@@ -61,8 +59,11 @@
 				case 'sql':
 					code = $.highlightCode.hightlight_sql(code);	
 					break;
+				case 'bash':
+					code = $.highlightCode.hightlight_bash(code);	
+					break;
 				default:
-					code = $.highlightCode.hightlight(code);	
+					code = $.highlightCode.hightlight_JS(code);	
 					break;
 			}
 			
@@ -106,13 +107,27 @@
 	$.highlightCode = {
 		
 		//DEFAULT
-		hightlight: function(code) {
+		hightlight_JS: function(code) {
 					
 			var comments		= [];	// store comments
-		
-			code = code
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
+			var gObjects ='ArrayBuffer SharedArrayBuffer Atomics DataView JSON Iterator '+
+'ParallelArray StopIteration Promise Generator GeneratorFunction Map Set WeakMap WeakSet Array '+
+'RegExp Number Math Date String Object Function Boolean Symbol Error EvalError InternalError '+
+'RangeError ReferenceError SyntaxError TypeError URIError';
+			gObjects = new RegExp(get_keywords(gObjects), 'gi');
+// http://www.w3schools.com/js/js_reserved.asp
+			keywords = 'abstract arguments boolean break byte case catch char class const '+
+'continue debugger default delete do double else enum eval export extends false final finally '+
+'float for function goto if implements import in instanceof int interface let long native new '+
+'null package private protected public return short static super switch synchronized this throw '+
+'throws transient true try typeof var void volatile while with yield';
+			keywords = new RegExp(get_keywords(keywords), 'gi');
+
+ 	  		code = code
 				//replace keywords
-				.replace(/(var|function|typeof|new|return|if|for|in|while|break|do|continue|case|switch)([^a-z0-9\$_])/gi,'<span class="kwd">$1</span>$2')
+				.replace(keywords,'<span class="kwd">$1</span>$2')
+				.replace(gObjects,'<span class="kwd">$1</span>$2')
 				//replace keywords
 				.replace(/(\{|\}|\]|\[|\|)/gi,'<span class="kwd">$1</span>')
 				//replace strings
@@ -126,9 +141,50 @@
 				.replace(/\/\/(.*$)/gm,'<span class="com">//$1</span>')
 				//replace functons
 				.replace(/([a-z\_\$][a-z0-9_]*)\(/gi,'<span class="fnc">$1</span>(');
+
+			return code;
+		},
+	
+
+		//PHP
+		hightlight_bash: function(code) {
+			var comments		= [];	// store comments
+			var funcs			='';
+			var keywords		='alias bg bind break builtin caller case cd'+
+' command compgen complete compopt continue coproc declare dirs disown do done'+
+' echo enable eval else exec exit export false fc fg for for function getopts'+
+' hash help history if in jobs job_spec kill let local logout mapfile optstring'+
+' printf pushd pwd readarray readonly shift shopt suspend test time trap type'+
+' ulimit unalias until wait';
+
+			funcs = new RegExp(get_keywords(funcs), 'gi');
+			keywords = new RegExp(get_keywords(keywords), 'gi');
+			
+			code = code
+				//replace strings
+				.replace(/(".*?")/g,'<span class="str">$1</span>')
+				.replace(/('.*?')/g,'<span class="str">$1</span>');
+//				.replace(/\b([0-9.\-]+)\b/g,'<span class="str">$1</span>');	
+				//replace multiline comments
+//				.replace(/\/\*([\s\S]*?)\*\//g, function(m, t)
+//					{ return '\0C'+push(comments, multiline_comments(m))+'\0'; })
+//				.replace(/\0C(\d+)\0/g, function(m, i)
+//					{ return comments[i]; })
+				//replace one line comments
+				code=code.replace(/#(.+)/g,'<span class="com"># $1</span>')
+				//replace variables
+				.replace(/\$(\w+)/gm,'<span class="var">$$$1</span>')
+				//replace functions
+//				.replace(funcs,'<span class="fnc">$1</span>$2')
+				//replace keywords
+				.replace(keywords,'<span class="kwd">$1</span>$2')
+				.replace(/^[$#]/gm,'<b>$</b>')
+// var is injected seperately here..
+				;
 			return code;
 		},
 		
+	
 		//PHP
 		hightlight_php: function(code) {
 			
