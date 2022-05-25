@@ -117,36 +117,40 @@
 'RangeError ReferenceError SyntaxError TypeError URIError';
 			gObjects = new RegExp(get_keywords(gObjects), 'gi');
 // http://www.w3schools.com/js/js_reserved.asp
+// i have removed 'long' as i use it as a var name
 			keywords = 'abstract arguments boolean break byte case catch char class const '+
 'continue debugger default delete do double else enum eval export extends false final finally '+
-'float for function goto if implements import in instanceof int interface let long native new '+
+'float for function goto if implements import in instanceof int interface let native new '+
 'null package private protected public return short static super switch synchronized this throw '+
 'throws transient true try typeof var void volatile while with yield';
 			keywords = new RegExp(get_keywords(keywords), 'gi');
 
  	  		code = code
 				//replace keywords
-				.replace(keywords,'<span class="kwd">$1</span>$2')
-				.replace(gObjects,'<span class="kwd">$1</span>$2')
+				.replace(keywords,'<span class=¬kwd¬>$1</span>$2')
+				.replace(gObjects,'<span class=¬kwd¬>$1</span>$2')
 				//replace keywords
-				.replace(/(\{|\}|\]|\[|\|)/gi,'<span class="kwd">$1</span>')
+				.replace(/(\{|\}|\]|\[|\|)/gi,'<span class=¬kwd¬>$1</span>')
 				//replace strings
-				.replace(/('.*?')/g,'<span class="str">$1</span>')
+				.replace(/('.*?')/g,'<span class=¬str¬>$1</span>')
 				//replace multiline comments
 				.replace(/\/\*([\s\S]*?)\*\//g, function(m, t)
 					{ return '\0C'+push(comments, multiline_comments(m))+'\0'; })
 				.replace(/\0C(\d+)\0/g, function(m, i)
 					{ return comments[i]; })
 				//replace one line comments
-				.replace(/\/\/(.*$)/gm,'<span class="com">//$1</span>')
+				.replace(/\/\/(.*$)/gm,'<span class=¬com¬>//$1</span>')
 				//replace functons
-				.replace(/([a-z\_\$][a-z0-9_]*)\(/gi,'<span class="fnc">$1</span>(');
+				.replace(/([a-z\_\$][a-z0-9_]*)\(/gi,'<span class=¬fnc¬>$1</span>(')
+				// replace other string delimitor; with mask to avoid the above replacements
+				.replace(/("[^"]*")/g,'<span class=¬str¬>$1</span>')
+				// remove mask
+				.replace(/¬/g, '"');
 
 			return code;
 		},
 	
 
-		//PHP
 		hightlight_bash: function(code) {
 			var comments		= [];	// store comments
 			var funcs			='';
