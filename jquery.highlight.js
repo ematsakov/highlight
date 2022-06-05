@@ -2,7 +2,7 @@
  * jQuery Highlight Plugin
  * Examples and documentation at: http://demo.webcodingstudio.com/highlight/
  * Copyright (c) 2010 E. Matsakov
- * Version: 1.04 (12-Feb-2015)
+ * Version: 1.06 (01-Jun-2016)
  * Dual licensed under the MIT and GPL licenses:
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
@@ -151,6 +151,7 @@
 		},
 	
 
+		//BASH
 		hightlight_bash: function(code) {
 			var comments		= [];	// store comments
 			var funcs			='';
