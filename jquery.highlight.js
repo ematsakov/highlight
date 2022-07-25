@@ -2,7 +2,7 @@
  * jQuery Highlight Plugin
  * Examples and documentation at: http://demo.webcodingstudio.com/highlight/
  * Copyright (c) 2010 E. Matsakov
- * Version: 1.04 (12-Feb-2015)
+ * Version: 1.07 (01-Jun-2017)
  * Dual licensed under the MIT and GPL licenses:
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
@@ -151,6 +151,7 @@
 		},
 	
 
+		//BASH
 		hightlight_bash: function(code) {
 			var comments		= [];	// store comments
 			var funcs			='';
@@ -767,22 +768,16 @@
 		},
 		
 		//CSS
-		hightlight_css: function(code) {
-			
+		hightlight_css: function(code) {	
 			var comments		= [];	// store comments
 			
-			var keywords =	'background-color background-image background-position ' +
-				'background-repeat background border-collapse border-color border-spacing border-style border-top ' +
-				'border-right border-bottom border-left border-top-color border-right-color border-bottom-color border-left-color ' +
-				'border-top-style border-right-style border-bottom-style border-left-style border-top-width border-right-width ' +
-				'border-bottom-width border-left-width border-width border color cursor direction display ' +
-				'flex-direction flex-flow flex-wrap ' +
-				'float font-size-adjust font-family font-size font-stretch font-style font-variant font-weight font ' +
-				'height left letter-spacing line-height list-style-image list-style-position list-style-type list-style margin-top ' +
-				'margin-right margin-bottom margin-left margin max-height max-width min-height min-width ' +
-				'outline-color outline-style outline-width outline overflow padding-top padding-right padding-bottom padding-left padding position' +
-				'quotes right size src table-layout text-align top text-decoration text-indent text-shadow text-transform ' +
-				'vertical-align visibility white-space width word-spacing x-height z-index';
+			var keywords = 'accent-color align-content align-items align-self all animation animation-delay animation-direction animation-duration animation-fill-mode animation-iteration-count animation-name animation-play-state animation-timing-function backdrop-filter backface-visibility background background-attachment background-blend-mode background-clip background-color background-image background-origin background-position background-repeat background-size border border-bottom border-bottom-color '+
+'border-bottom-left-radius border-bottom-right-radius border-bottom-style border-bottom-width border-collapse border-color border-image border-image-outset border-image-repeat border-image-slice border-image-source border-image-width border-left border-left-color border-left-style border-left-width border-radius border-right border-right-color border-right-style border-right-width border-spacing border-style border-top border-top-color border-top-left-radius border-top-right-radius border-top-style'+
+'border-top-width border-width bottom box-decoration-break box-shadow box-sizing break-after break-before break-inside caption-side caret-color charset clear clip color column-count column-fill column-gap column-rule column-rule-color column-rule-style column-rule-width columns column-span column-width content counter-increment counter-reset cursor direction display empty-cells filter flex flex-basis flex-direction flex-flow flex-grow flex-shrink flex-wrap float font font-face'+
+'font-family font-feature-settings font-feature-values font-kerning font-language-override font-size font-size-adjust font-stretch font-style font-synthesis font-variant font-variant-alternates font-variant-caps font-variant-east-asian font-variant-ligatures font-variant-numeric font-variant-position font-weight gap grid grid-area grid-auto-columns grid-auto-flow grid-auto-rows grid-column grid-column-end grid-column-gap grid-column-start grid-gap grid-row grid-row-end grid-row-gap grid-row-start'+
+'grid-template grid-template-areas grid-template-columns grid-template-rows hanging-punctuation height hyphens image-rendering import isolation justify-content keyframes left letter-spacing line-break line-height list-style list-style-image list-style-position list-style-type margin margin-bottom margin-left margin-right margin-top mask mask-clip mask-composite mask-image mask-mode mask-origin mask-position mask-repeat mask-size mask-type max-height max-width media min-height min-width'+
+'mix-blend-mode object-fit object-position opacity order orphans outline outline-color outline-offset outline-style outline-width overflow overflow-wrap overflow-x overflow-y padding padding-bottom padding-left padding-right padding-top page-break-after page-break-before page-break-inside perspective perspective-origin pointer-events position quotes resize right row-gap scroll-behavior size src table-layout tab-size text-align text-align-last text-combine-upright text-decoration text-decoration-color'+
+'text-decoration-line text-decoration-style text-decoration-thickness text-emphasis text-indent text-justify text-orientation text-overflow text-shadow text-transform text-underline-position top transform transform-origin transform-style transition transition-delay transition-duration transition-property transition-timing-function unicode-bidi user-select vertical-align visibility white-space widows width word-break word-spacing word-wrap writing-mode x-height z-index';
 		
 			var values =	'absolute all attr auto baseline behind below black blink block blue bold bolder '+
 				'both bottom capitalize caption center center-left center-right circle close-quote collapse compact '+
