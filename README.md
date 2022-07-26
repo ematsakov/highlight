@@ -1,4 +1,3 @@
-I am working on retiring this JS
 
 [Jquery Highlight](https://github.com/ematsakov/highlight)
 ========
