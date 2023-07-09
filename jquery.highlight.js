@@ -22,7 +22,7 @@
 			list: 'ol',
 			//name of the tag attribute to add a special language highlighting
 			attribute: 'lang'
-		}
+		};
 		
 		var params = $.extend({}, defaults, element_params);
 
@@ -133,6 +133,10 @@
 				.replace(/(\{|\}|\]|\[|\|)/gi,'<span class=¬kwd¬>$1</span>')
 				//replace strings
 				.replace(/('.*?')/g,'<span class=¬str¬>$1</span>')
+				//replace functions
+				.replace(/([a-z\_\$][a-z0-9_]*)\(/gi,'<span class=¬fnc¬>$1</span>(')
+				// replace other string delimitor; with mask to avoid the above replacements
+				.replace(/("[^"]*")/g,'<span class=¬str¬>$1</span>')
 				//replace multiline comments
 				.replace(/\/\*([\s\S]*?)\*\//g, function(m, t)
 					{ return '\0C'+push(comments, multiline_comments(m))+'\0'; })
@@ -140,10 +144,6 @@
 					{ return comments[i]; })
 				//replace one line comments
 				.replace(/\/\/(.*$)/gm,'<span class=¬com¬>//$1</span>')
-				//replace functons
-				.replace(/([a-z\_\$][a-z0-9_]*)\(/gi,'<span class=¬fnc¬>$1</span>(')
-				// replace other string delimitor; with mask to avoid the above replacements
-				.replace(/("[^"]*")/g,'<span class=¬str¬>$1</span>')
 				// remove mask
 				.replace(/¬/g, '"');
 
@@ -768,7 +768,7 @@
 		},
 		
 		//CSS
-		hightlight_css: function(code) {	
+		hightlight_css: function(code) {
 			var comments		= [];	// store comments
 			
 			var keywords = 'accent-color align-content align-items align-self all animation animation-delay animation-direction animation-duration animation-fill-mode animation-iteration-count animation-name animation-play-state animation-timing-function backdrop-filter backface-visibility background background-attachment background-blend-mode background-clip background-color background-image background-origin background-position background-repeat background-size border border-bottom border-bottom-color '+
